@@ -1,570 +1,473 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Briefing Bullen Cross · Sou Iraní</title>
-  <link href="https://fonts.googleapis.com/css2?family=Century+Gothic:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
-
-    :root {
-      --white: #ffffff;
-      --bege: #E8DDD0;
-      --bege-light: #F5F0EB;
-      --rosa: #F2B8C6;
-      --rosa-light: #FDE8EF;
-      --rosa-mid: #E8A0B4;
-      --text-dark: #2C2420;
-      --text-mid: #7A6A64;
-      --text-light: #B0A09A;
-      --border: #EAE0D8;
-      --radius-sm: 12px;
-      --radius-md: 20px;
-      --radius-lg: 32px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text-dark);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 28px 24px 24px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .brand {
-      font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-mid);
-    }
-
-    .brand span { color: var(--rosa-mid); }
-
-    .hero {
-      padding: 56px 24px 40px;
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      background: var(--rosa-light);
-      color: var(--rosa-mid);
-      font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 999px;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-      font-size: clamp(26px, 5vw, 38px);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--text-dark);
-      margin-bottom: 16px;
-    }
-
-    .hero h1 em { font-style: normal; color: var(--rosa-mid); }
-
-    .hero p {
-      font-size: 15px;
-      color: var(--text-mid);
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .form-wrapper {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-    }
-
-    .bloco {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .bloco::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--rosa-light), var(--rosa));
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    }
-
-    .bloco-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-    }
-
-    .bloco-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--rosa-light);
-      color: var(--rosa-mid);
-      font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .bloco-titulo {
-      font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-dark);
-    }
-
-    .pergunta { margin-bottom: 28px; }
-    .pergunta:last-child { margin-bottom: 0; }
-
-    .pergunta label {
-      display: block;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-dark);
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    .pergunta label .num {
-      color: var(--rosa-mid);
-      font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      margin-right: 6px;
-    }
-
-    textarea {
-      width: 100%;
-      background: var(--bege-light);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 14px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      color: var(--text-dark);
-      transition: border-color 0.2s, background 0.2s;
-      resize: vertical;
-      outline: none;
-      line-height: 1.6;
-      min-height: 88px;
-    }
-
-    textarea:focus {
-      border-color: var(--rosa-mid);
-      background: var(--white);
-    }
-
-    textarea::placeholder {
-      color: var(--text-light);
-      font-style: italic;
-    }
-
-    .btn-enviar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      background: linear-gradient(135deg, var(--rosa) 0%, var(--rosa-mid) 100%);
-      color: var(--white);
-      font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 18px 32px;
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-
-    .btn-enviar:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-enviar:active { transform: translateY(0); }
-
-    .btn-enviar svg { width: 20px; height: 20px; flex-shrink: 0; }
-
-    .rodape-nota {
-      text-align: center;
-      margin-top: 20px;
-      padding-bottom: 40px;
-    }
-
-    .rodape-nota p { font-size: 12px; color: var(--text-light); line-height: 1.6; }
-    .rodape-nota a { color: var(--rosa-mid); text-decoration: none; }
-
-    @media (max-width: 520px) {
-      .bloco { padding: 28px 20px; border-radius: var(--radius-md); }
-      .hero { padding: 40px 20px 32px; }
-      .form-wrapper { padding: 0 16px 64px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bullen Cross · Alinhamento de conteúdo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #0D0D0D;
+    --white: #FFFFFF;
+    --red: #C81E24;
+    --red-deep: #7A1015;
+    --bridge: #BF5B26;
+    --cream: #F7F4EF;
+    --gray: #6B6660;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--black);
+    font-family: 'Inter', sans-serif;
+    color: var(--black);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap{
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--white);
+  }
+  .hero{
+    background: var(--black);
+    color: var(--white);
+    padding: 48px 28px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-2px; left:0; right:0;
+    height:6px;
+    background: var(--red);
+  }
+  .bull{
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    display:block;
+  }
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+  h1{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size: 34px;
+    line-height: 1.05;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .hero p{
+    margin-top: 14px;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+    max-width: 320px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .intro{
+    padding: 32px 28px 8px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #2A2A2A;
+  }
+  .intro strong{ color: var(--black); }
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 26px 0;
+  }
+  .divider .dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  section.block{
+    padding: 8px 28px 36px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  h2{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--black);
+    margin-bottom: 14px;
+    line-height: 1.15;
+  }
+  .card{
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 22px 20px;
+    margin-bottom: 14px;
+  }
+  .card p{
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #3A3630;
+  }
+  .card p + p{ margin-top: 10px; }
+  .swatches{
+    display:flex;
+    gap:10px;
+    margin: 4px 0 16px;
+    flex-wrap: wrap;
+  }
+  .swatch{
+    flex:1;
+    min-width: 64px;
+    text-align:center;
+  }
+  .swatch .chip{
+    width:100%;
+    height: 44px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .swatch span{
+    font-size: 10.5px;
+    font-weight:700;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .swatch.new .chip{
+    box-shadow: 0 0 0 2px var(--white), 0 0 0 3px var(--bridge);
+  }
+  .swatch.new span{ color: var(--bridge); }
+  .personas{
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+  }
+  .persona{
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .persona .name{
+    font-family:'Anton', sans-serif;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .persona p{
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #3A3630;
+  }
+  .questions{
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+  }
+  .q{
+    display:flex;
+    gap: 14px;
+    align-items:flex-start;
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .q .num{
+    font-family:'Anton', sans-serif;
+    font-size: 20px;
+    color: var(--red);
+    flex-shrink:0;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .q p{
+    font-size: 14px;
+    line-height: 1.55;
+    color: #2A2A2A;
+  }
+  .q p b{ color: var(--black); }
+  .cta-block{
+    background: var(--black);
+    padding: 40px 28px 44px;
+    text-align:center;
+  }
+  .cta-block h3{
+    font-family:'Anton', sans-serif;
+    color: var(--white);
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .cta-block p{
+    color: rgba(255,255,255,0.7);
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 22px;
+    max-width: 300px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .btn{
+    display:inline-block;
+    background: var(--red);
+    color: var(--white);
+    text-decoration:none;
+    font-weight: 700;
+    font-size: 14.5px;
+    padding: 15px 30px;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover{
+    background: var(--red-deep);
+    transform: translateY(-1px);
+  }
+  .btn:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .answer-label{
+    display:block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+  textarea{
+    width: 100%;
+    min-height: 64px;
+    resize: vertical;
+    border: 1.5px solid #E4DFD6;
+    border-radius: 10px;
+    background: var(--white);
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--black);
+    line-height: 1.5;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+  textarea:focus{
+    border-color: var(--red);
+  }
+  textarea::placeholder{
+    color: #B5AEA1;
+  }
+  .comment-card{
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 22px 20px;
+  }
+  footer{
+    text-align:center;
+    padding: 20px 20px 30px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    background: var(--black);
+  }
+  @media (max-width: 380px){
+    h1{ font-size: 28px; }
+    .hero{ padding: 40px 22px 34px; }
+    section.block{ padding: 8px 22px 32px; }
+    .intro{ padding: 28px 22px 8px; }
+  }
+</style>
 </head>
 <body>
+<div class="wrap">
 
-  <header>
-    <div class="brand">Sou <span>Iraní</span> · Social Media</div>
-  </header>
-
-  <section class="hero">
-    <div class="hero-tag">Bullen Cross · Briefing</div>
-    <h1>Vamos nos <em>conhecer</em> melhor?</h1>
-    <p>Esse formulário é o ponto de partida do nosso trabalho juntas. Responda com calma — não existe resposta certa ou errada, só a sua verdade sobre a academia.</p>
-  </section>
-
-  <div class="form-wrapper">
-
-    <!-- BLOCO 1 -->
-    <div class="bloco">
-      <div class="bloco-header">
-        <div class="bloco-num">1</div>
-        <div class="bloco-titulo">O Negócio</div>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">1.</span> Há quanto tempo a Bullen Cross existe? Como surgiu a ideia?</label>
-        <textarea name="q1" placeholder="Conta um pouco da história..."></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">2.</span> Você é a única proprietária? Tem sócios ou sócias envolvidos no dia a dia?</label>
-        <textarea name="q2"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">3.</span> Quais são os serviços oferecidos atualmente? (ex: aulas de cross training, musculação, personal, aulas online, eventos…)</label>
-        <textarea name="q3" placeholder="Liste tudo que você oferece hoje"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">4.</span> A academia tem turmas fixas ou horários abertos? Quantas turmas por dia em média?</label>
-        <textarea name="q4"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">5.</span> Você tem outros profissionais que dão aula além de você?</label>
-        <textarea name="q5"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">6.</span> Qual é o ticket médio da mensalidade? Existe plano trimestral, semestral ou anual?</label>
-        <textarea name="q6" placeholder="Pode ser aproximado, não precisa ser exato"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">7.</span> A academia tem capacidade para crescer em número de alunos agora, ou está com agenda cheia?</label>
-        <textarea name="q7"></textarea>
-      </div>
-    </div>
-
-    <!-- BLOCO 2 -->
-    <div class="bloco">
-      <div class="bloco-header">
-        <div class="bloco-num">2</div>
-        <div class="bloco-titulo">Público-Alvo</div>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">8.</span> Quem é o aluno típico da Bullen Cross hoje? (faixa etária, gênero, perfil de vida)</label>
-        <textarea name="q8" placeholder="Descreva quem é a pessoa que já frequenta a sua academia"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">9.</span> Esse público é predominantemente de qual bairro ou região de Feira de Santana?</label>
-        <textarea name="q9"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">10.</span> Qual perfil de aluno você <strong>mais quer atrair</strong> nos próximos 3 meses?</label>
-        <textarea name="q10" placeholder="Pode ser diferente de quem você já tem hoje"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">11.</span> Tem algum perfil de pessoa que <strong>não combina</strong> com a sua academia?</label>
-        <textarea name="q11" placeholder="Seja honesta — isso ajuda a comunicar pra quem é certo"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">12.</span> Seus alunos costumam chegar por indicação, por redes sociais ou por outros meios?</label>
-        <textarea name="q12"></textarea>
-      </div>
-    </div>
-
-    <!-- BLOCO 3 -->
-    <div class="bloco">
-      <div class="bloco-header">
-        <div class="bloco-num">3</div>
-        <div class="bloco-titulo">Posicionamento e Identidade</div>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">13.</span> Se a Bullen Cross fosse uma pessoa, como ela seria? Quais palavras definem a personalidade da marca?</label>
-        <textarea name="q13" placeholder="Ex: forte, acolhedora, desafiadora, divertida..."></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">14.</span> O que diferencia a Bullen Cross das outras academias de cross training em Feira?</label>
-        <textarea name="q14" placeholder="O que você tem que as outras não têm?"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">15.</span> Existe alguma academia ou marca fitness que você admira pelo trabalho nas redes sociais?</label>
-        <textarea name="q15" placeholder="Pode ser de Feira, de outro estado ou de fora do Brasil"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">16.</span> Tem alguma academia ou marca fitness que você <strong>não quer</strong> se parecer? Por quê?</label>
-        <textarea name="q16" placeholder="Às vezes saber o que não somos define muito bem quem somos"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">17.</span> O touro é o símbolo da marca. O que ele representa pra você e o que você quer que ele transmita para quem vê?</label>
-        <textarea name="q17"></textarea>
-      </div>
-    </div>
-
-    <!-- BLOCO 4 -->
-    <div class="bloco">
-      <div class="bloco-header">
-        <div class="bloco-num">4</div>
-        <div class="bloco-titulo">Objetivos com as Redes Sociais</div>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">18.</span> Qual é o seu objetivo principal no Instagram nos próximos 3 meses?</label>
-        <textarea name="q18" placeholder="Crescer seguidores, gerar matrículas, engajar a comunidade... pode ter mais de um, mas qual é o prioritário?"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">19.</span> Você tem alguma meta numérica? (ex: chegar a X seguidores, X novos alunos por mês)</label>
-        <textarea name="q19" placeholder="Se não tiver, tudo bem — isso nos ajuda a construir juntas"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">20.</span> Hoje, o perfil gera matrículas de forma direta? As pessoas chegam até você pelo Instagram?</label>
-        <textarea name="q20"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">21.</span> Você quer aparecer pessoalmente no perfil — stories, reels, lives? Qual é seu nível de conforto com isso?</label>
-        <textarea name="q21" placeholder="Me conta com honestidade — a gente adapta a estratégia ao seu conforto"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">22.</span> Tem alguma data importante nos próximos 3 meses? (aniversário da academia, eventos, promoções, datas do calendário fitness)</label>
-        <textarea name="q22"></textarea>
-      </div>
-    </div>
-
-    <!-- BLOCO 5 -->
-    <div class="bloco">
-      <div class="bloco-header">
-        <div class="bloco-num">5</div>
-        <div class="bloco-titulo">Conteúdo e Rotina</div>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">23.</span> Quem produz as fotos e vídeos hoje? Você mesma, algum aluno, ou tem alguém contratado?</label>
-        <textarea name="q23"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">24.</span> Você consegue dedicar quanto tempo por semana para gravar conteúdo ou me passar materiais?</label>
-        <textarea name="q24" placeholder="Seja realista — isso define como a gente organiza a produção"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">25.</span> Vocês já tiveram alguma ação ou campanha que funcionou muito bem no passado? O que foi?</label>
-        <textarea name="q25" placeholder="Qualquer coisa que teve boa repercussão — post, sorteio, desafio, evento..."></textarea>
-      </div>
-    </div>
-
-    <!-- BLOCO 6 -->
-    <div class="bloco">
-      <div class="bloco-header">
-        <div class="bloco-num">6</div>
-        <div class="bloco-titulo">O Que Não Pode Aparecer</div>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">26.</span> Existe algum tipo de conteúdo que você <strong>nunca</strong> quer ver no seu perfil? (estética, linguagem, abordagem, tema)</label>
-        <textarea name="q26" placeholder="Sem filtros — me conta tudo que te incomoda"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">27.</span> Tem alguma palavra, expressão ou gíria que não combina com a sua marca?</label>
-        <textarea name="q27"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">28.</span> Você tem restrição quanto a compartilhar imagens de alunos sem autorização prévia?</label>
-        <textarea name="q28"></textarea>
-      </div>
-
-      <div class="pergunta">
-        <label><span class="num">29.</span> Existe alguma situação pessoal ou assunto que você prefere manter fora das redes?</label>
-        <textarea name="q29" placeholder="Pode ser vago — só me avisa que existe um limite"></textarea>
-      </div>
-    </div>
-
-  </div><!-- /form-wrapper -->
-
-  <div style="max-width:680px;margin:0 auto;padding:0 24px;">
-    <button class="btn-enviar" onclick="enviarWhatsapp()">
-      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      Enviar respostas pelo WhatsApp
-    </button>
-
-    <div class="rodape-nota">
-      <p>Ao clicar, você será direcionada ao WhatsApp com todas as respostas preenchidas.<br>
-      Formulário desenvolvido por <a href="#">Sou Iraní · Social Media</a></p>
-    </div>
+  <div class="hero">
+    <svg class="bull" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M63,52 C77,40 88,26 91,13" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" fill="none"/>
+      <path d="M37,52 C23,40 12,26 9,13" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" fill="none"/>
+      <path d="M30,52 Q50,43 70,52 L65,82 Q50,92 35,82 Z" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="4"/>
+      <ellipse cx="24" cy="56" rx="7" ry="4.5" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="3.5" transform="rotate(-25 24 56)"/>
+      <ellipse cx="76" cy="56" rx="7" ry="4.5" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="3.5" transform="rotate(25 76 56)"/>
+      <circle cx="42" cy="62" r="3" fill="#FFFFFF"/>
+      <circle cx="58" cy="62" r="3" fill="#FFFFFF"/>
+      <ellipse cx="50" cy="80" rx="11" ry="6.5" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="3.5"/>
+      <ellipse cx="45" cy="80" rx="1.8" ry="2.2" fill="#FFFFFF"/>
+      <ellipse cx="55" cy="80" rx="1.8" ry="2.2" fill="#FFFFFF"/>
+    </svg>
+    <div class="eyebrow">Sou Iraní × Bullen Cross</div>
+    <h1>Vamos alinhar<br>alguns pontos</h1>
+    <p>Um resumo rápido do que já foi pensado pro Instagram e do que preciso da sua confirmação pra seguir em frente.</p>
   </div>
 
-  <script>
-    const perguntas = [
-      "1. Há quanto tempo a Bullen Cross existe? Como surgiu a ideia?",
-      "2. Você é a única proprietária? Tem sócias envolvidas no dia a dia?",
-      "3. Quais são os serviços oferecidos atualmente?",
-      "4. A academia tem turmas fixas ou horários abertos? Quantas turmas por dia?",
-      "5. Você tem outros profissionais que dão aula além de você?",
-      "6. Qual é o ticket médio da mensalidade? Existe plano trimestral, semestral ou anual?",
-      "7. A academia tem capacidade para crescer agora, ou está com agenda cheia?",
-      "8. Quem é o aluno típico da Bullen Cross hoje?",
-      "9. Esse público é de qual bairro ou região de Feira?",
-      "10. Qual perfil de aluno você MAIS quer atrair nos próximos 3 meses?",
-      "11. Tem algum perfil que NÃO combina com a sua academia?",
-      "12. Seus alunos costumam chegar por indicação, redes sociais ou outros meios?",
-      "13. Se a Bullen Cross fosse uma pessoa, como ela seria?",
-      "14. O que diferencia a Bullen Cross das outras academias de cross em Feira?",
-      "15. Existe alguma academia ou marca fitness que você admira nas redes?",
-      "16. Tem alguma marca fitness que você NÃO quer se parecer? Por quê?",
-      "17. O touro é o símbolo da marca. O que ele representa pra você?",
-      "18. Qual é o objetivo principal no Instagram nos próximos 3 meses?",
-      "19. Você tem alguma meta numérica?",
-      "20. Hoje, o perfil gera matrículas de forma direta?",
-      "21. Você quer aparecer pessoalmente no perfil? Qual é seu nível de conforto?",
-      "22. Tem alguma data importante nos próximos 3 meses?",
-      "23. Quem produz as fotos e vídeos hoje?",
-      "24. Quanto tempo por semana você consegue dedicar para produção de conteúdo?",
-      "25. Alguma ação ou campanha que funcionou muito bem no passado?",
-      "26. Existe conteúdo que você NUNCA quer ver no seu perfil?",
-      "27. Tem alguma palavra ou gíria que não combina com a sua marca?",
-      "28. Você tem restrição quanto a compartilhar imagens de alunos sem autorização?",
-      "29. Existe algum assunto que você prefere manter fora das redes?"
+  <div class="intro">
+    Oi, Sula! Depois de estudar bastante o perfil e a marca da Bullen, cheguei em algumas propostas de direção. <strong>Antes de colocar qualquer coisa em prática</strong>, separei os pontos que dependem só de você. Dá uma olhada com calma e me diz o que faz sentido.
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <section class="block">
+    <div class="tag">Identidade visual</div>
+    <h2>Uma cor a mais no feed</h2>
+    <div class="card">
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#0D0D0D"></div><span>Preto</span></div>
+        <div class="swatch"><div class="chip" style="background:#C81E24"></div><span>Vermelho</span></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF; border-color:#ddd"></div><span>Branco</span></div>
+        <div class="swatch new"><div class="chip" style="background:#BF5B26"></div><span>Nova</span></div>
+      </div>
+      <p>Reparei que a logo tem um laranja quente que hoje não aparece em nada no feed. Não é sobre mudar o preto e o vermelho, que já são fortes e reconhecidos. É sobre usar esse tom laranja em detalhes pontuais: destaques, selos de aula experimental, cards educativos. Uma ponte entre a logo e o feed, sem perder a força que já existe.</p>
+      <p><b>Faz sentido pra você?</b></p>
+      <label class="answer-label" for="r-cor">Sua resposta</label>
+      <textarea id="r-cor" placeholder="Escreve aqui o que você acha..."></textarea>
+    </div>
+  </section>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <section class="block">
+    <div class="tag">Pra quem vamos falar</div>
+    <h2>Três perfis de aluno</h2>
+    <p style="font-size:14px; color:#5A554E; line-height:1.6; margin-bottom:16px;">A academia recebe todo mundo, isso não muda. Mas pra comunicação ficar mais forte, ajuda ter três perfis principais em mente quando a gente cria o conteúdo. Isso é o que chamamos de <b>persona</b>, um retrato de um tipo de aluno que costuma aparecer na academia, com a rotina, a dúvida e o motivo que faz ele procurar a Bullen. Não é sobre excluir ninguém, é sobre ter clareza de quem a gente quer atrair primeiro pra puxar mais gente parecida. São só um ponto de partida, você conhece os alunos melhor que ninguém.</p>
+    <div class="personas">
+      <div class="persona">
+        <div class="name">Marcos, 32 anos</div>
+        <p>Já treinou em academia tradicional e nunca sentiu evolução. Busca desafio de verdade e gente acompanhando o progresso dele.</p>
+      </div>
+      <div class="persona">
+        <div class="name">Juliana, mãe de dois</div>
+        <p>Quer o filho com rotina de esporte e disciplina, não só gastando energia. Precisa sentir que o ambiente é seguro.</p>
+      </div>
+      <div class="persona">
+        <div class="name">Dona Célia, 58 anos</div>
+        <p>Ativa, cansada de ser tratada como frágil. Quer treinar sério, com acompanhamento, sendo respeitada como capaz.</p>
+      </div>
+    </div>
+    <p style="font-size:13.5px; color:#8a8478; margin-top:14px;">Reconhece algum outro perfil recorrente que devia entrar na lista?</p>
+    <label class="answer-label" for="r-persona">Sua resposta</label>
+    <textarea id="r-persona" placeholder="Se tiver outro perfil que aparece bastante, descreve aqui..."></textarea>
+  </section>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <section class="block">
+    <div class="tag">Preciso de você</div>
+    <h2>Perguntas rápidas</h2>
+    <div class="questions">
+      <div class="q">
+        <div class="num">1</div>
+        <div style="flex:1;">
+          <p>Quais são os <b>valores de cada plano</b> (trimestral, semestral, anual) e o que muda entre eles além do tempo de contrato?</p>
+          <label class="answer-label" for="r-planos">Sua resposta</label>
+          <textarea id="r-planos" placeholder="Valores e diferenças entre os planos..."></textarea>
+        </div>
+      </div>
+      <div class="q">
+        <div class="num">2</div>
+        <div style="flex:1;">
+          <p>Tem algum <b>Instagram de academia ou marca fitness</b> que você olha e pensa "quero me inspirar nisso"? E algum que você não quer de jeito nenhum parecer? Me manda o @ e por quê.</p>
+          <label class="answer-label" for="r-referencias">Sua resposta</label>
+          <textarea id="r-referencias" placeholder="@ de referência e @ do que não quer parecer..."></textarea>
+        </div>
+      </div>
+      <div class="q">
+        <div class="num">3</div>
+        <div style="flex:1;">
+          <p>A meta de <b>10 mil seguidores</b>, você imagina isso dentro dos 3 meses de permuta ou é uma meta mais longa, pro ano? Preciso saber porque essa é uma meta alta, e só com conteúdo orgânico o crescimento tende a ser mais lento. Pra chegar lá mais rápido, provavelmente vamos precisar investir em <b>tráfego pago</b> (impulsionar publicações e anúncios) e em <b>parcerias com influenciadores</b> locais ou de nicho fitness. Isso tem custo, então já vale alinhar se esse investimento entra no plano.</p>
+          <label class="answer-label" for="r-prazo">Sua resposta</label>
+          <textarea id="r-prazo" placeholder="Prazo que você imagina e se topa investir em tráfego pago..."></textarea>
+        </div>
+      </div>
+      <div class="q">
+        <div class="num">4</div>
+        <div style="flex:1;">
+          <p>O diferencial que você mais cita é <b>"os treinos"</b>, mas preciso entender isso a fundo pra passar pro conteúdo. Por exemplo: a metodologia é diferente de outras academias? Os coaches acompanham o aluno de um jeito específico? Como funciona a estrutura de uma aula, do aquecimento ao treino do dia? Tem algo no jeito de ensinar ou na programação dos treinos que só a Bullen faz? Quanto mais detalhe, melhor.</p>
+          <label class="answer-label" for="r-diferencial">Sua resposta</label>
+          <textarea id="r-diferencial" placeholder="Conta com detalhes o que torna o treino diferente..." style="min-height: 90px;"></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <section class="block">
+    <div class="tag">Espaço livre</div>
+    <h2>Quer comentar mais alguma coisa?</h2>
+    <div class="comment-card">
+      <p style="font-size:14px; color:#3A3630; line-height:1.6; margin-bottom:12px;">Se tiver algo que não perguntei mas você acha importante eu saber, escreve aqui.</p>
+      <textarea id="r-comentario" placeholder="Fica à vontade..." style="min-height: 90px;"></textarea>
+    </div>
+  </section>
+
+  <div class="cta-block">
+    <h3>Bora alinhar?</h3>
+    <p>Preenche o que conseguir aqui em cima e clica no botão. Suas respostas já vão junto na mensagem do WhatsApp.</p>
+    <a class="btn" id="send-btn" href="#" rel="noopener">Enviar respostas no WhatsApp</a>
+  </div>
+
+  <footer>Sou Iraní · Social Media</footer>
+
+</div>
+
+<script>
+  function val(id){
+    const el = document.getElementById(id);
+    const v = el.value.trim();
+    return v.length ? v : "(não respondeu)";
+  }
+
+  document.getElementById('send-btn').addEventListener('click', function(e){
+    e.preventDefault();
+
+    const partes = [
+      "Oi Iraní! Aqui vão minhas respostas sobre a Bullen Cross:",
+      "",
+      "1) Cor de ponte no feed: " + val('r-cor'),
+      "",
+      "2) Outro perfil de aluno: " + val('r-persona'),
+      "",
+      "3) Valores dos planos: " + val('r-planos'),
+      "",
+      "4) Referências de Instagram: " + val('r-referencias'),
+      "",
+      "5) Prazo da meta de 10k e tráfego pago: " + val('r-prazo'),
+      "",
+      "6) Diferencial dos treinos: " + val('r-diferencial'),
+      "",
+      "Comentário extra: " + val('r-comentario')
     ];
 
-    const blocos = [
-      { titulo: "BLOCO 1 · O NEGÓCIO", inicio: 0, fim: 7 },
-      { titulo: "BLOCO 2 · PÚBLICO-ALVO", inicio: 7, fim: 12 },
-      { titulo: "BLOCO 3 · POSICIONAMENTO E IDENTIDADE", inicio: 12, fim: 17 },
-      { titulo: "BLOCO 4 · OBJETIVOS COM AS REDES SOCIAIS", inicio: 17, fim: 22 },
-      { titulo: "BLOCO 5 · CONTEÚDO E ROTINA", inicio: 22, fim: 25 },
-      { titulo: "BLOCO 6 · O QUE NÃO PODE APARECER", inicio: 25, fim: 29 }
-    ];
-
-    const STORAGE_KEY = "briefing_bullencross";
-
-    // Salva todas as respostas no localStorage
-    function salvarRespostas() {
-      const campos = document.querySelectorAll('textarea');
-      const respostas = {};
-      campos.forEach((campo, i) => {
-        respostas[`q${i}`] = campo.value;
-      });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(respostas));
-    }
-
-    // Recupera respostas salvas ao carregar a página
-    function carregarRespostas() {
-      const salvo = localStorage.getItem(STORAGE_KEY);
-      if (!salvo) return;
-      const respostas = JSON.parse(salvo);
-      const campos = document.querySelectorAll('textarea');
-      campos.forEach((campo, i) => {
-        if (respostas[`q${i}`]) {
-          campo.value = respostas[`q${i}`];
-        }
-      });
-    }
-
-    // Vincula o auto-save a todos os textareas
-    function iniciarAutoSave() {
-      const campos = document.querySelectorAll('textarea');
-      campos.forEach(campo => {
-        campo.addEventListener('input', salvarRespostas);
-      });
-    }
-
-    function enviarWhatsapp() {
-      const campos = document.querySelectorAll('textarea');
-      let mensagem = "📋 *BRIEFING BULLEN CROSS*\n_Formulário respondido via Sou Iraní · Social Media_\n\n";
-
-      blocos.forEach(bloco => {
-        mensagem += `\n━━━━━━━━━━━━━━━\n*${bloco.titulo}*\n━━━━━━━━━━━━━━━\n\n`;
-        for (let i = bloco.inicio; i < bloco.fim; i++) {
-          const resposta = campos[i] ? campos[i].value.trim() : "";
-          mensagem += `*${perguntas[i]}*\n`;
-          mensagem += resposta ? `${resposta}\n\n` : `_(não respondida)_\n\n`;
-        }
-      });
-
-      mensagem += "\n_Enviado via formulário de briefing Sou Iraní_ ✨";
-
-      // Limpa o rascunho salvo após o envio
-      localStorage.removeItem(STORAGE_KEY);
-
-      const numero = "5575998325035";
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
-    }
-
-    // Inicia ao carregar a página
-    document.addEventListener('DOMContentLoaded', () => {
-      carregarRespostas();
-      iniciarAutoSave();
-    });
-  </script>
+    const mensagem = encodeURIComponent(partes.join("\n"));
+    const url = "https://wa.me/5575998325035?text=" + mensagem;
+    window.open(url, '_blank');
+  });
+</script>
 
 </body>
 </html>
